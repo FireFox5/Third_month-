@@ -1,9 +1,8 @@
 import datetime
 import random
-
 from django.http import HttpResponse
-# Create your views here.
 from django.shortcuts import render
+from blog.models import Blog
 
 
 def date_view(request):
@@ -17,16 +16,17 @@ def random_view(request):
 
 
 def create_blog(request):
-    if request.method == "POST":
-        data = request.POST
-
+    if request.POST:
+        data= request.POST
+        files = request.FILES
         title = data["title"]
         descripction = data["description"]
-
-        context = {"image": request.FILES.get('image'), 'title': title, 'description':descripction}
-        return render(request, "click_photo.html", context)
+        image = data["image"]
+        blog = Blog.objects.create(title=title, description=descripction, image=image)
+        # context = {"image": request.FILES.get('image'), 'title': title, 'description':descripction}
+        return HttpResponse("блог успешно добавлен ")
     elif request.method == "GET":
-        return render(request, 'hm_blog.html')
+        return render(request, 'hm_blog_creation.html')
 
 
 def test_form(request):

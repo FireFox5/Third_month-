@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Very interesting</title>
+</head>
+<body>
+<form action="/blog/create" method="post">
+    {%csrf_token%}
+    <p>
+    <label for= "title"> Название</label>
+    <input  id="title" name="title" type="text">
+    </p>
+    <p>
+    <label for="description">Описание</label>
+    <input  id="description" name="description" type="text">
+    </p>
+    <p><label for="image">Фотография</label>?
+    <input id="image" name="image" type="file">
+     </p>
+    <input type="submit">
+
+</form>
+</body>
+</html>
