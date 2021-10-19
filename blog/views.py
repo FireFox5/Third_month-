@@ -21,13 +21,17 @@ def create_blog(request):
         files = request.FILES
         title = data["title"]
         descripction = data["description"]
-        image = data["image"]
+        image = files["image"]
         blog = Blog.objects.create(title=title, description=descripction, image=image)
         # context = {"image": request.FILES.get('image'), 'title': title, 'description':descripction}
         return HttpResponse("блог успешно добавлен ")
     elif request.method == "GET":
         return render(request, 'hm_blog_creation.html')
-
+def blog_view(request):
+    blogs = Blog.objects.all()
+    return render(request,'view of the blogs.html',context={"blogs":blogs})
+def dop_information(request):
+    return render(request,'dop-information about blog.html')
 
 def test_form(request):
     if request.method == "POST":
@@ -39,7 +43,3 @@ def test_form(request):
         return render(request, 'file.html')
 
 
-def show_photo(request):
-    if request.method == "GET":
-
-        return render(request, "click_photo_2.html",)

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>special information</title>
+</head>
+<body>
+<li>
+    <div>
+    <h1>here you can read more information about photo</h1>
+    {%for i in blogs %}
+   <ul style="list-style: none; text-align:center" >
+          {%for i in blogs %}
+          <li>
+              <div>
+                  <h2>{{ i.title }}</h2>
+                  <p >
+                      <img src="{{ i.image.url }}"style="width 500px ;height:500px" alt="">
+                  </p>
+                  <p>
+                  <span> Likes{{i.likes}}</span>
+                  </p>
+                  <span>Reposts:{{i.reposts}}</span>
+                    <h3>
+                  <p>{{i.description}}</p>
+                    </h3>
+
+              </div>
+
+          </li>
+          {%endfor%}
+      </ul>
+
+    {%endfor%}
+    </div>
+</li>
+</body>
+</html>

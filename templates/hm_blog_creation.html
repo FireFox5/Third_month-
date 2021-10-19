@@ -5,7 +5,7 @@
     <title>Very interesting</title>
 </head>
 <body>
-<form action="/blog/create" method="post">
+<form enctype="multipart/form-data" action="/blog/create" method="post">
     {%csrf_token%}
     <p>
     <label for= "title"> Название</label>
@@ -14,6 +14,8 @@
     <p>
     <label for="description">Описание</label>
     <input  id="description" name="description" type="text">
+        <label for="special-description">дополнительная информация о фотке </label>
+        <input id="special-description" type="text">
     </p>
     <p><label for="image">Фотография</label>?
     <input id="image" name="image" type="file">
