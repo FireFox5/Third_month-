@@ -11,7 +11,30 @@
      <h3 style="text-align:center">
        There you can see Amount of descriptions of picture
    </h3>
-    <p><a href="http://127.0.0.1:8000/blog/extra-info">link for more information </a></p>
+   <div class="" style="display: flex; justify-content: space-between;">
+       <div>
+               <p><a href="http://127.0.0.1:8000/blog/extra-info/">link for more information </a></p>
+
+       </div>
+       <div>
+           <a href="{% url 'create' %}">CREATE BLOG</a>
+       </div>
+       <div>
+           {% if request.user.is_authenticated %}
+                Welcome to blog: {{request.user}}
+                <p>
+                    <a href="{% url 'logout' %}">logout</a>
+                </p>
+           {% else %}
+                {{request.user}}
+                <p>
+                    <a href="{% url 'register' %}">Registrations</a>
+                    |
+                    <a href="{% url 'login' %}">Login</a>
+                </p>
+           {% endif %}
+       </div>
+   </div>
   <div>
       <ul style="list-style: none; text-align:center" >
           {%for i in blogs %}
@@ -19,7 +42,9 @@
               <div>
                   <h2>{{ i.title }}</h2>
                   <p >
-                      <img src="{{ i.image.url }}"style="width 500px ;height:500px" alt="">
+                      {% if i.image %}
+                      <img src="{{ i.image.url }}" style="width: 500px; height: 500px" alt="">
+                      {% endif %}
                   </p>
                   <p>
                   <span> Likes{{i.likes}}</span>
